@@ -13,6 +13,7 @@ import * as Validation from '@hapi/joi';
 import { ConfigModule } from '@nestjs/config';
 import { EventsModule } from './events/events.module';
 import { UserRolesModule } from './user-roles/user-roles.module';
+import { EventTypesModule } from './event-types/event-types.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -60,6 +61,7 @@ import { UserRolesModule } from './user-roles/user-roles.module';
     PostCommentModule,
     EventsModule,
     UserRolesModule,
+    EventTypesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
