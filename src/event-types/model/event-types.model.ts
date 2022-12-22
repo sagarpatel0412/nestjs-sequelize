@@ -3,11 +3,27 @@ import {
   Column,
   CreatedAt,
   DataType,
+  HasMany,
   Model,
+  Scopes,
   Table,
   UpdatedAt,
 } from 'sequelize-typescript';
+import { EventSubTypesModel } from 'src/event-sub-types/model/event-sub-types.model';
 
+@Scopes({
+  event_sub_types: () => {
+    return {
+      include: {
+        model: EventSubTypesModel,
+        as: 'event_sub_types',
+        attributes: {
+          exclude: ['created_at', 'updated_at'],
+        },
+      },
+    };
+  },
+})
 @ObjectType('EventTypes')
 @Table({ modelName: 'event_types' })
 export class EventTypesModel extends Model<EventTypesModel> {
@@ -16,8 +32,8 @@ export class EventTypesModel extends Model<EventTypesModel> {
     type: DataType.UUIDV4,
     primaryKey: true,
     unique: true,
-    allowNull: false,
     defaultValue: DataType.UUIDV4,
+    allowNull: false,
   })
   id: string;
 
@@ -33,14 +49,14 @@ export class EventTypesModel extends Model<EventTypesModel> {
     type: DataType.STRING,
     allowNull: false,
   })
-  description: string;
+  value_info: string;
 
   @Field(() => String)
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  value_info: string;
+  description: string;
 
   @Field(() => Boolean)
   @Column({
@@ -54,4 +70,8 @@ export class EventTypesModel extends Model<EventTypesModel> {
 
   @UpdatedAt
   updated_at: Date;
+
+  @Field(() => [EventSubTypesModel], { nullable: true })
+  @HasMany(() => EventSubTypesModel)
+  event_sub_types: EventSubTypesModel[];
 }
