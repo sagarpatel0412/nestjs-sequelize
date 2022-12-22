@@ -42,6 +42,29 @@ type UsersEvents {
   is_active: Boolean!
 }
 
+type EventTypes {
+  id: String!
+  name: String!
+  value_info: String!
+  description: String!
+  status: Boolean!
+  event_sub_types: [EventSubTypes!]
+}
+
+type EventSubTypes {
+  id: String!
+  name: String!
+  image: String!
+  value_info: String!
+  description: String!
+  title: String!
+  meta_title: String!
+  meta_description: String!
+  status: Boolean!
+  event_types: EventTypes!
+  events_sub_types_events: [Events!]
+}
+
 type Events {
   id: String!
   image: String!
@@ -57,6 +80,7 @@ type Events {
   event_time: String!
   users: User!
   user_events: [User!]!
+  event_sub_types: EventSubTypes
 }
 
 """
@@ -126,6 +150,14 @@ type UserRoleCount {
   count: Int!
 }
 
+type EventTypesCount {
+  count: Int!
+}
+
+type EventSubTypesCount {
+  count: Int!
+}
+
 type Query {
   getUsers: [User!]!
   getUser(id: String!): User!
@@ -151,6 +183,13 @@ type Query {
   getUserRole(id: String!): UserRoles!
   getUserRoles: [UserRoles!]!
   countUserRoles: UserRoleCount!
+  getEventType(id: String!): EventTypes!
+  getEventTypes: [EventTypes!]!
+  countEventTypes: EventTypesCount!
+  getEventSubType(id: String!): EventSubTypes!
+  getEventSubTypes: [EventSubTypes!]!
+  countEventSubTypes: EventSubTypesCount!
+  countEventSubTypesByEventTypes(event_types_id: String!): EventSubTypesCount!
 }
 
 type Mutation {
@@ -175,6 +214,12 @@ type Mutation {
   createUserRoles(createUserRoleInput: CreateUserRoleInput!): UserRoles!
   updateUserRoles(id: String!, updateUserRoleInput: UpdateUserRoleInput!): UserRoles!
   deleteUserRoles(id: String!): UserRoles!
+  createEventTypes(createEventTypeInput: CreateEventTypeInput!): EventTypes!
+  updateEventTypes(id: String!, updateEventTypeInput: UpdateEventTypeInput!): EventTypes!
+  deleteEventTypes(id: String!): EventTypes!
+  createEventSubTypes(createEventSubTypeInput: CreateEventSubTypeInput!): EventSubTypes!
+  updateEventSubTypes(id: String!, updateEventSubTypeInput: UpdateEventSubTypeInput!): EventSubTypes!
+  deleteEventSubTypes(id: String!): EventSubTypes!
 }
 
 input CreateUserInput {
@@ -252,6 +297,7 @@ input CreateEventInput {
   event_date: DateTime!
   event_time: String!
   userId: String!
+  event_sub_type_name: String!
 }
 
 input UpdateEventInput {
@@ -285,5 +331,42 @@ input UpdateUserRoleInput {
   name: String!
   value_info: String!
   description: String!
+  status: Boolean!
+}
+
+input CreateEventTypeInput {
+  name: String!
+  description: String!
+  value_info: String!
+  status: Boolean!
+}
+
+input UpdateEventTypeInput {
+  name: String!
+  description: String!
+  value_info: String!
+  status: Boolean!
+}
+
+input CreateEventSubTypeInput {
+  name: String!
+  value_info: String!
+  description: String!
+  title: String!
+  image: String!
+  meta_title: String!
+  meta_description: String!
+  status: Boolean!
+  event_type_value: String!
+}
+
+input UpdateEventSubTypeInput {
+  name: String!
+  value_info: String!
+  description: String!
+  title: String!
+  image: String!
+  meta_title: String!
+  meta_description: String!
   status: Boolean!
 }

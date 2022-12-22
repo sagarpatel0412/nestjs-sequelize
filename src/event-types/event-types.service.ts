@@ -4,6 +4,7 @@ import { UpdateEventTypeInput } from './dto/update-event-type.input';
 import { InjectModel } from '@nestjs/sequelize';
 import { EventTypesModel } from './model/event-types.model';
 import { Sequelize } from 'sequelize-typescript';
+import { string } from '@hapi/joi';
 import { EventTypesCountModel } from './model/event-types-count.model';
 
 @Injectable()
@@ -62,12 +63,16 @@ export class EventTypesService {
   }
 
   public async getEventTypes(): Promise<Array<EventTypesModel>> {
-    const eventsInput = await this.eventTypesModel.findAll();
+    const eventsInput = await this.eventTypesModel
+      .scope([{ method: ['event_sub_types'] }])
+      .findAll();
     return eventsInput;
   }
 
   public async getEventType(id: string): Promise<EventTypesModel> {
-    const eventsInput = await this.eventTypesModel.findOne({ where: { id } });
+    const eventsInput = await this.eventTypesModel
+      .scope([{ method: ['event_sub_types'] }])
+      .findOne({ where: { id } });
     return eventsInput;
   }
 
