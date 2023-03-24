@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('contact_form', {
+    return queryInterface.createTable('contact_forms', {
       id: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -39,7 +39,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('contact_form');
+    return queryInterface.dropTable('contact_forms');
     /**
      * Add reverting commands here.
      *
