@@ -189,6 +189,14 @@ type AverageEventsRatingModel {
   one_star: String!
 }
 
+type ContactFormModel {
+  id: String!
+  name: String!
+  description: String!
+  email: String!
+  status: Boolean!
+}
+
 type Query {
   getUsers: [User!]!
   getUser(id: String!): User!
@@ -229,6 +237,8 @@ type Query {
   getAllStarRatingsOfSpecificEvent(event_id: String!): AverageEventsRatingModel!
   getEventsFeedback(id: String!): EventFeedbacksModel!
   getEventsFeedbacks: [EventFeedbacksModel!]!
+  getContactForms: [ContactFormModel!]!
+  getContactForm(id: String!): ContactFormModel!
 }
 
 type Mutation {
@@ -265,6 +275,9 @@ type Mutation {
   createEventsFeedback(createEventsFeedbackInput: CreateEventFeedbackInput!): EventFeedbacksModel!
   updateEventsFeedback(id: String!, updateEventsFeedbackInput: UpdateEventFeedbackInput!): EventFeedbacksModel!
   deleteEventsFeedback(id: String!): EventFeedbacksModel!
+  createContactForm(createContactFormInput: CreateContactFormInput!): ContactFormModel!
+  updateContactForm(id: String!, updateContactFormInput: UpdateContactFormInput!): ContactFormModel!
+  deleteContactForm(id: String!): ContactFormModel!
 }
 
 input CreateUserInput {
@@ -441,5 +454,19 @@ input CreateEventFeedbackInput {
 input UpdateEventFeedbackInput {
   title: String!
   description: String!
+  status: Boolean!
+}
+
+input CreateContactFormInput {
+  name: String!
+  description: String!
+  email: String!
+  status: Boolean!
+}
+
+input UpdateContactFormInput {
+  name: String!
+  description: String!
+  email: String!
   status: Boolean!
 }
