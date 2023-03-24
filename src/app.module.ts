@@ -18,6 +18,7 @@ import { EventSubTypesModule } from './event-sub-types/event-sub-types.module';
 import { EventsRatingModule } from './events-rating/events-rating.module';
 import { EventFeedbacksModule } from './event-feedbacks/event-feedbacks.module';
 import { ContactFormModule } from './contact-form/contact-form.module';
+import { SubscriptionFormModule } from './subscription-form/subscription-form.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -70,6 +71,7 @@ import { ContactFormModule } from './contact-form/contact-form.module';
     EventsRatingModule,
     EventFeedbacksModule,
     ContactFormModule,
+    // SubscriptionFormModule,
   ],
   controllers: [AppController],
   providers: [AppService],

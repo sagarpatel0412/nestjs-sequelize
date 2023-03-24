@@ -26,3 +26,4 @@ create table event_ratings(id uuid default uuid_generate_v4(), rating_comment te
 create table event_feedbacks(id uuid default uuid_generate_v4(), title varchar not null, description text not null, status boolean, created_at date, updated_at date, user_id uuid, event_id uuid, PRIMARY KEY(id), CONSTRAINT fk_events_feedback_user FOREIGN KEY(user_id) REFERENCES users(id), CONSTRAINT fk_events_feedback_event FOREIGN KEY(event_id) REFERENCES events(id));
 create table contact_forms(id uuid default uuid_generate_v4(),name varchar not null,description varchar not null, email varchar unique not null,status boolean, created_at date, updated_at date);
 drop table contact_forms;
+create table subscription_forms(id uuid default uuid_generate_v4(),email varchar unique not null,status boolean,is_sent_email boolean, created_at date, updated_at date);
