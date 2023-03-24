@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('event_feedbacks', {
+    return queryInterface.createTable('contact_form', {
       id: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -11,11 +11,14 @@ module.exports = {
         unique: true,
         primaryKey: true,
       },
-      title: {
+      name: {
         type: Sequelize.STRING,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+      },
+      email: {
+        type: Sequelize.INTEGER,
       },
       status: {
         type: Sequelize.BOOLEAN,
@@ -25,20 +28,6 @@ module.exports = {
       },
       updated_at: {
         type: Sequelize.DATE,
-      },
-      user_id: {
-        type: Sequelize.UUID,
-        references: {
-          model: 'users',
-          key: 'id',
-        },
-      },
-      event_id: {
-        type: Sequelize.UUID,
-        references: {
-          model: 'events',
-          key: 'id',
-        },
       },
     });
     /**
@@ -50,7 +39,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('event_feedbacks');
+    return queryInterface.dropTable('contact_form');
     /**
      * Add reverting commands here.
      *
