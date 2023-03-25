@@ -12,13 +12,16 @@ module.exports = {
         primaryKey: true,
       },
       email: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       status: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       is_sent_email: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

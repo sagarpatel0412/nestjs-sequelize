@@ -6,7 +6,7 @@ import { UpdateSubscriptionFormInput } from './dto/update-subscription-form.inpu
 import { SubscriptionFormModel } from './model/subscription-form.model';
 import { AllowUnauthorized } from 'src/auth/decorators/allow-unauthorized.decorator';
 
-@Resolver(() => SubscriptionForm)
+@Resolver(() => SubscriptionFormModel)
 export class SubscriptionFormResolver {
   constructor(
     private readonly subscriptionFormService: SubscriptionFormService,
