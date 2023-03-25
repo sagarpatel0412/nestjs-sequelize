@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('contact_forms', {
+    return queryInterface.createTable('data_statuses', {
       id: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -11,7 +11,7 @@ module.exports = {
         unique: true,
         primaryKey: true,
       },
-      name: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -19,12 +19,18 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      value_info: {
         type: Sequelize.STRING,
+        unique: true,
         allowNull: false,
       },
       status: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
+      },
+      status_number: {
+        type: Sequelize.NUMBER,
+        unique: true,
         allowNull: false,
       },
       created_at: {
@@ -43,7 +49,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('contact_forms');
+    return queryInterface.dropTable('data_statuses');
     /**
      * Add reverting commands here.
      *

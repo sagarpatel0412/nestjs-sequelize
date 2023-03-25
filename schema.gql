@@ -204,6 +204,15 @@ type SubscriptionFormModel {
   is_sent_email: Boolean!
 }
 
+type DataStatusModel {
+  id: String!
+  title: String!
+  description: String!
+  value_info: String!
+  status_number: Int!
+  status: Boolean!
+}
+
 type Query {
   getUsers: [User!]!
   getUser(id: String!): User!
@@ -248,6 +257,8 @@ type Query {
   getContactForm(id: String!): ContactFormModel!
   getSubscriptionForms: [SubscriptionFormModel!]!
   getSubscriptionForm(id: String!): SubscriptionFormModel!
+  getDataStatuses: [DataStatusModel!]!
+  getDataStatus(id: String!): DataStatusModel!
 }
 
 type Mutation {
@@ -290,6 +301,9 @@ type Mutation {
   createSubscriptionForm(createSubscriptionFormInput: CreateSubscriptionFormInput!): SubscriptionFormModel!
   updateSubscriptionForm(updateSubscriptionFormInput: UpdateSubscriptionFormInput!, id: String!): SubscriptionFormModel!
   deleteSubscriptionForm(id: String!): SubscriptionFormModel!
+  createDataStatus(createDataStatusInput: CreateDataStatusInput!): DataStatusModel!
+  updateDataStatus(updateDataStatusInput: UpdateDataStatusInput!, id: String!): DataStatusModel!
+  deleteDataStatus(id: String!): DataStatusModel!
 }
 
 input CreateUserInput {
@@ -493,4 +507,20 @@ input UpdateSubscriptionFormInput {
   email: String!
   status: Boolean!
   is_sent_email: Boolean!
+}
+
+input CreateDataStatusInput {
+  title: String!
+  description: String!
+  value_info: String!
+  status: Boolean!
+  status_number: Int!
+}
+
+input UpdateDataStatusInput {
+  title: String!
+  description: String!
+  value_info: String!
+  status: Boolean!
+  status_number: Int!
 }

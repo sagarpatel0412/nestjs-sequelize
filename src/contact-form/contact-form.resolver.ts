@@ -6,7 +6,7 @@ import { UpdateContactFormInput } from './dto/update-contact-form.input';
 import { ContactFormModel } from './model/contact-form.model';
 import { AllowUnauthorized } from 'src/auth/decorators/allow-unauthorized.decorator';
 
-@Resolver(() => ContactForm)
+@Resolver(() => ContactFormModel)
 export class ContactFormResolver {
   constructor(private readonly contactFormService: ContactFormService) {}
 

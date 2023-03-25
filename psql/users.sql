@@ -27,3 +27,4 @@ create table event_feedbacks(id uuid default uuid_generate_v4(), title varchar n
 create table contact_forms(id uuid default uuid_generate_v4(),name varchar not null,description varchar not null, email varchar unique not null,status boolean, created_at date, updated_at date);
 drop table contact_forms;
 create table subscription_forms(id uuid default uuid_generate_v4(),email varchar unique not null,status boolean,is_sent_email boolean, created_at date, updated_at date);
+create table data_statuses(id uuid default uuid_generate_v4(),status_number int unique not null,status boolean,value_info varchar unique not null,title varchar not null,description varchar not null, created_at date, updated_at date);

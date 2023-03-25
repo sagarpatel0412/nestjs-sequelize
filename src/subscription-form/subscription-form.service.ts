@@ -12,7 +12,8 @@ import { Sequelize } from 'sequelize-typescript';
 @Injectable()
 export class SubscriptionFormService {
   constructor(
-    @InjectModel(SubscriptionFormModel) private subscriptionFormModel,
+    @InjectModel(SubscriptionFormModel)
+    private subscriptionFormModel: typeof SubscriptionFormModel,
     private sequelize: Sequelize,
   ) {}
 

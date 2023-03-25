@@ -6,7 +6,7 @@ import { UpdateEventFeedbackInput } from './dto/update-event-feedback.input';
 import { EventFeedbacksModel } from './model/event-feedbacks.model';
 import { AllowUnauthorized } from 'src/auth/decorators/allow-unauthorized.decorator';
 
-@Resolver(() => EventFeedback)
+@Resolver(() => EventFeedbacksModel)
 export class EventFeedbacksResolver {
   constructor(private readonly eventsFeedbackService: EventFeedbacksService) {}
 
