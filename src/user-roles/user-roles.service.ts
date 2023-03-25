@@ -58,7 +58,11 @@ export class UserRolesService {
     const roleInput = await this.userRolesModel
       .scope([{ method: ['users'] }])
       .findOne({ where: { id } });
-    return roleInput;
+    if (roleInput === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return roleInput;
+    }
   }
 
   public async getUserRoles(): Promise<Array<UserRolesModel>> {

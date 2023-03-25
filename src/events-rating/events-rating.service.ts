@@ -97,7 +97,11 @@ export class EventsRatingService {
       .findOne({
         where: { id },
       });
-    return eventResults;
+    if (eventResults === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return eventResults;
+    }
   }
 
   public async getEventsRatings(): Promise<Array<EventsRatingModel>> {

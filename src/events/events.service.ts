@@ -108,7 +108,11 @@ export class EventsService {
         { method: ['events_feedback_event'] },
       ])
       .findOne({ where: { id } });
-    return eventInput;
+    if (eventInput === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return eventInput;
+    }
   }
 
   public async enrollEvents(

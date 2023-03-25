@@ -36,7 +36,11 @@ export class PostLikeService {
     const userLike = await this.postLikeModel
       .scope([{ method: ['posts'] }, { method: ['users'] }])
       .findOne({ where: { id } });
-    return userLike;
+    if (userLike === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return userLike;
+    }
   }
 
   public async updateLike(

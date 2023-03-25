@@ -91,7 +91,11 @@ export class UserService {
         { method: ['events_feedback_user'] },
       ])
       .findOne({ where: { id } });
-    return user;
+    if (user === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return user;
+    }
   }
 
   public async updateUser(
@@ -187,7 +191,11 @@ export class UserService {
 
   public async profileDetails(id: string): Promise<UserModel> {
     const userDetails = await this.userModel.findOne({ where: { id } });
-    return userDetails;
+    if (userDetails === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return userDetails;
+    }
   }
 
   private hashPassword(pwd: string): string {

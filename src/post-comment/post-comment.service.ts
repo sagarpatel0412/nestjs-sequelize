@@ -61,7 +61,11 @@ export class PostCommentService {
     const commentInput = await this.postCommentModel
       .scope([{ method: ['posts'] }, { method: ['users'] }])
       .findOne({ where: { id } });
-    return commentInput;
+    if (commentInput === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return commentInput;
+    }
   }
 
   public async getComments(): Promise<Array<PostCommentModel>> {

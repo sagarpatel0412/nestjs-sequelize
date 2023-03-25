@@ -89,7 +89,11 @@ export class EventFeedbacksService {
     const feedbackData = await this.eventsFeedbackModel.findOne({
       where: { id },
     });
-    return feedbackData;
+    if (feedbackData === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return feedbackData;
+    }
   }
 
   public async getEventsFeedbacks(): Promise<Array<EventFeedbacksModel>> {

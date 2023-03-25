@@ -73,7 +73,11 @@ export class EventTypesService {
     const eventsInput = await this.eventTypesModel
       .scope([{ method: ['event_sub_types'] }])
       .findOne({ where: { id } });
-    return eventsInput;
+    if (eventsInput === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return eventsInput;
+    }
   }
 
   public async countEventTypes(): Promise<EventTypesCountModel> {

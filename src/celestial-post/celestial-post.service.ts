@@ -55,7 +55,11 @@ export class CelestialPostService {
         { method: ['posts_users_comments'] },
       ])
       .findOne({ where: { id } });
-    return postsResults;
+    if (postsResults === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return postsResults;
+    }
   }
 
   public async updatePost(

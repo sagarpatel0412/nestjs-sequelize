@@ -98,7 +98,11 @@ export class EventSubTypesService {
       .findOne({
         where: { id },
       });
-    return eventsModel;
+    if (eventsModel === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return eventsModel;
+    }
   }
 
   public async getEventSubTypes(): Promise<Array<EventSubTypesModel>> {

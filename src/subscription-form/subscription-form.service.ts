@@ -46,7 +46,11 @@ export class SubscriptionFormService {
     const isSubThere = await this.subscriptionFormModel.findOne({
       where: { id },
     });
-    return isSubThere;
+    if (isSubThere === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return isSubThere;
+    }
   }
 
   public async updateSubscriptionForm(

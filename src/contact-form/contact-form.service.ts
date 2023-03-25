@@ -78,7 +78,11 @@ export class ContactFormService {
     const isContactThere = await this.contactFormModel.findOne({
       where: { id },
     });
-    return isContactThere;
+    if (isContactThere === null) {
+      throw new NotFoundException(`No data found with this id`);
+    } else {
+      return isContactThere;
+    }
   }
 
   public async getContactForms(): Promise<Array<ContactFormModel>> {
