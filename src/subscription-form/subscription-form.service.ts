@@ -38,7 +38,7 @@ export class SubscriptionFormService {
   }
 
   public async getSubscriptionForms(): Promise<Array<SubscriptionFormModel>> {
-    const isSubThere = await this.subscriptionFormModel.findOne();
+    const isSubThere = await this.subscriptionFormModel.findAll();
     return isSubThere;
   }
 

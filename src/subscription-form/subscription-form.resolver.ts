@@ -36,7 +36,7 @@ export class SubscriptionFormResolver {
   }
 
   @AllowUnauthorized()
-  @Mutation(() => SubscriptionForm)
+  @Mutation(() => SubscriptionFormModel)
   updateSubscriptionForm(
     @Args('updateSubscriptionFormInput')
     updateSubscriptionFormInput: UpdateSubscriptionFormInput,
@@ -49,7 +49,7 @@ export class SubscriptionFormResolver {
   }
 
   @AllowUnauthorized()
-  @Mutation(() => SubscriptionForm)
+  @Mutation(() => SubscriptionFormModel)
   deleteSubscriptionForm(@Args('id') id: string) {
     return this.subscriptionFormService.deleteSubscriptionForm(id);
   }

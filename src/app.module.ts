@@ -71,7 +71,7 @@ import { SubscriptionFormModule } from './subscription-form/subscription-form.mo
     EventsRatingModule,
     EventFeedbacksModule,
     ContactFormModule,
-    // SubscriptionFormModule,
+    SubscriptionFormModule,
   ],
   controllers: [AppController],
   providers: [AppService],

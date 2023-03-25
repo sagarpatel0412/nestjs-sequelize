@@ -197,6 +197,13 @@ type ContactFormModel {
   status: Boolean!
 }
 
+type SubscriptionFormModel {
+  id: String!
+  email: String!
+  status: Boolean!
+  is_sent_email: Boolean!
+}
+
 type Query {
   getUsers: [User!]!
   getUser(id: String!): User!
@@ -239,6 +246,8 @@ type Query {
   getEventsFeedbacks: [EventFeedbacksModel!]!
   getContactForms: [ContactFormModel!]!
   getContactForm(id: String!): ContactFormModel!
+  getSubscriptionForms: [SubscriptionFormModel!]!
+  getSubscriptionForm(id: String!): SubscriptionFormModel!
 }
 
 type Mutation {
@@ -278,6 +287,9 @@ type Mutation {
   createContactForm(createContactFormInput: CreateContactFormInput!): ContactFormModel!
   updateContactForm(id: String!, updateContactFormInput: UpdateContactFormInput!): ContactFormModel!
   deleteContactForm(id: String!): ContactFormModel!
+  createSubscriptionForm(createSubscriptionFormInput: CreateSubscriptionFormInput!): SubscriptionFormModel!
+  updateSubscriptionForm(updateSubscriptionFormInput: UpdateSubscriptionFormInput!, id: String!): SubscriptionFormModel!
+  deleteSubscriptionForm(id: String!): SubscriptionFormModel!
 }
 
 input CreateUserInput {
@@ -469,4 +481,16 @@ input UpdateContactFormInput {
   description: String!
   email: String!
   status: Boolean!
+}
+
+input CreateSubscriptionFormInput {
+  email: String!
+  status: Boolean!
+  is_sent_email: Boolean!
+}
+
+input UpdateSubscriptionFormInput {
+  email: String!
+  status: Boolean!
+  is_sent_email: Boolean!
 }
